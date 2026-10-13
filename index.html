@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A modern, beautifully designed dummy HTML template featuring glassmorphism and interactive components.">
+  <title>Dummy HTML Starter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.4);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-glow: rgba(99, 102, 241, 0.35);
+      --accent: #06b6d4;
+      --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Ambient background glow */
+    .ambient-glow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.15) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.75rem 1.5rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.28);
+      color: #a5b4fc;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 8px #34d399;
+    }
+
+    main {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      margin-bottom: 4rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2.25rem;
+    }
+
+    .action-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #4f46e5);
+      color: #ffffff;
+      box-shadow: 0 8px 24px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Cards grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      width: 100%;
+      text-align: left;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(99, 102, 241, 0.12);
+      color: #818cf8;
+      font-size: 1.25rem;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      font-size: 0.9375rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Interactive Demo Box */
+    .interactive-section {
+      width: 100%;
+      max-width: 580px;
+      margin-top: 3.5rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .counter-display {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      margin: 1rem 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    footer {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: #64748b;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <header>
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+      </div>
+      <span>AuroraUI</span>
+    </div>
+    <button class="btn btn-secondary" id="theme-btn" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+      ✨ Toggle Glow
+    </button>
+  </header>
+
+  <main>
+    <div class="hero-content">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Ready to use &bull; HTML5 Starter
+      </div>
+      <h1>Build something exceptional today.</h1>
+      <p class="subtitle">
+        A lightweight, responsive dummy HTML template built with clean semantics, modern glassmorphic styling, and interactive JavaScript.
+      </p>
+      <div class="action-group">
+        <button class="btn btn-primary" id="cta-button">
+          Get Started
+        </button>
+        <button class="btn btn-secondary" id="learn-more-btn">
+          Explore Features
+        </button>
+      </div>
+    </div>
+
+    <section class="grid" aria-label="Template features">
+      <article class="card">
+        <div class="card-icon">⚡</div>
+        <h2>Lightning Fast</h2>
+        <p>Zero external JavaScript runtime overhead. Clean vanilla CSS and responsive layout that renders instantly in any browser.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🎨</div>
+        <h2>Modern Aesthetic</h2>
+        <p>Sleek dark theme styled with soft gradients, glassmorphism, responsive typography, and subtle interactive micro-animations.</p>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">📱</div>
+        <h2>Fully Responsive</h2>
+        <p>Fluid grid layout and scalable typography designed to adapt seamlessly across mobile phones, tablets, and desktop displays.</p>
+      </article>
+    </section>
+
+    <section class="interactive-section" aria-label="Interactive demo">
+      <h3>Interactive Counter Demo</h3>
+      <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.25rem;">
+        Click below to test out the JavaScript interaction:
+      </p>
+      <div class="counter-display" id="counter-value">0</div>
+      <div style="display: flex; justify-content: center; gap: 0.75rem;">
+        <button class="btn btn-secondary" id="decrement-btn">-</button>
+        <button class="btn btn-primary" id="increment-btn">+ Increment</button>
+        <button class="btn btn-secondary" id="reset-btn">Reset</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 AuroraUI. Created as a modern HTML starter template.</p>
+  </footer>
+
+  <script>
+    // Simple interactive logic
+    let count = 0;
+    const counterValue = document.getElementById('counter-value');
+    const incrementBtn = document.getElementById('increment-btn');
+    const decrementBtn = document.getElementById('decrement-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const ctaButton = document.getElementById('cta-button');
+    const themeBtn = document.getElementById('theme-btn');
+    const glow = document.querySelector('.ambient-glow');
+
+    incrementBtn.addEventListener('click', () => {
+      count++;
+      counterValue.textContent = count;
+    });
+
+    decrementBtn.addEventListener('click', () => {
+      count--;
+      counterValue.textContent = count;
+    });
+
+    resetBtn.addEventListener('click', () => {
+      count = 0;
+      counterValue.textContent = count;
+    });
+
+    ctaButton.addEventListener('click', () => {
+      alert('Welcome! Your dummy HTML template is working perfectly.');
+    });
+
+    let glowVisible = true;
+    themeBtn.addEventListener('click', () => {
+      glowVisible = !glowVisible;
+      glow.style.opacity = glowVisible ? '1' : '0.2';
+      themeBtn.textContent = glowVisible ? '✨ Toggle Glow' : '💡 Dimmed Mode';
+    });
+  </script>
+</body>
+</html>
